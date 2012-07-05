@@ -3,7 +3,7 @@ title: netconfd - Easy, pretty web administration
 layout: default
 ---
 
-# netconfd - Easy, pretty web administration
+netconfd is a modular, flexible daemon for web-based system administration.
 
 ![Templating Diagram][templating]
 
