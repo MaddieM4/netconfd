@@ -4,4 +4,6 @@ title: netconfd - Easy, pretty web administration
 
 # netconfd - Easy, pretty web administration
 
-![alt-text][images/templating.svg]
+![Templating Diagram][templating]
+
+[templating]: images/templating.svg
