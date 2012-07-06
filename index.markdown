@@ -47,12 +47,82 @@ to get or set parameters.
 
 ![Templating Diagram][templating]
 
-TBW
+The template system is made of a bunch of layers. netconfd comes with a set
+of modules and widgets, but you can make your own or override the defaults.
+
+A *widget* is a basic chunk of the interface, a parameter with slots for a
+getter, setter, description, title, caching properties, etc. But in the
+widget definition itself, mind you, none of these things are filled in.
+The widget definition is an XSLT template that defines how to turn *invocations*
+of that widget into HTML.
+
+*Modules* are sets of *widget invocations*. For example, the SSH module might have
+a 'port' property, which is an invocation of the "textbox" widget, containing
+the callback information necessary for the conf server to apply changes and
+display the current value, and the metadata the widget needs to generate the
+HTML of the invocation. Invocations within a module are called *tweakables.*
+
+*Pages* pick and choose available tweakables from modules and assemble them as
+logical groups. Each page corresponds to an actual page that you can navigate
+to in your browser, and contains tweakables cherry-picked from the modules.
+This is almost the top layer of the templating, but not quite.
+
+The highest layer is the *global template*, which does things like initialize
+Backbone.js and provide whatever structure will be present in every page.
+This is the common skeleton of the entire presentation layer, and you can
+change the entire look of the interface across all pages simply by overriding
+this and the style sheet(s).
+
+As you can see, every single layer of this has defaults but is fully open to
+customization and overriding. Much like [Zombocom](http://zombo.com/), the only
+limit is yourself.
 
 ### Conf server
 
-TBW
+The conf server is another service that runs in the same process space, though
+in a different thread or greenlet than the http daemon that the template engine
+runs on top of. It communicates on a different port by default, though as a
+Backbone.js server, it can optionally be run on the same port under a dedicated
+directory.
 
+This server recieves GET and POST requests for tweakables, and translates them
+into the proper system administration commands based on the tweakable's
+definition. This is all statelessly authenticated with cookies on top of SSH,
+like the rest of the interface is. It also shares conf data with the other
+parts of the process, which means it operates off the same playbook as the
+template engine at all times.
+
+Another option for security is to run multiple conf-only processes for each
+set of permissions that will be needed, so you can isolate what permissions
+each instance is allowed. Sound config will run as a group that can manipulate
+sound parameters on the system, network config server will run as the group
+for that, etc. This lets you lock down your system a lot tighter against
+exploits, which is always a risk that these kinds of applications have to take
+into account. Note that this is quite incompatible with the "subdirectory"
+approach listed in the first paragraph, although if you set up nginx as a
+unifying reverse proxy to your various netconfd web services, this is easy
+enough to work around.
+
+## Won't this just discourage people from learning the command line?
+
+It makes it much less of a prerequisite, but I don't want to cripple anyone's
+learning process, even by enabling convenience. So the default interface will
+offer a "look inside" button for every tweakable on every page, where you can
+see the command or configuration location/flag for every getter and setter.
+Investigating how a module works on the inside is as easy as clicking a button.
+
+Obviously I can't guarantee that custom-branded installs of netconfd will
+retain this feature. Some distributors may decide that such stuff is unfriendly
+or some other nonsense, and they are free to disable/remove that code, of
+course. It's all part of the front-end anyways, you don't even have to dig into
+the daemon code to figure out how - it's just XML, HTML, XSLT and JS.
+
+But I do think that providing this kind of awesome feature, fully implemented,
+by default, will encourage most customizers to retain the feature in some
+variation or another. Because nobody else has to write it from scratch, so why
+not just copy and paste it over at the very least? And that will make netconfd,
+even in crazy custom variations, that much more attractive to the hackers that
+make up my target demographic.
 
 ## Where can I get it?
 
