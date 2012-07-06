@@ -6,7 +6,12 @@ body {
 
 h1 {
     background-color: #FFC;
+    background-image: url('images/logo.png');
+    background-repeat: no-repeat;
+    background-size: 1.2em;
+    background-position: 0.1em;
     padding: 10px;
+    padding-left: 1.4em;
     margin-top: 0px;
     position: absolute;
     width: 100%;

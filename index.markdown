@@ -16,6 +16,8 @@ interfaces for all sorts of devices. It will be initially targeted at mesh
 networking systems, but there's no reason people can't use it for other things
 and grow the official module set.
 
+![Project logo][logo]
+
 ## Why make netconfd? Don't most things have web interfaces already?
 
 Yep. Shitty, half-assed interfaces. And that's not an indictment of the projects
@@ -70,3 +72,4 @@ it gave you a hulk rage. I'm probably the person you want to hit but please,
 find some positive outlets. You can't live like that forever, man.
 
 [templating]: images/templating.png
+[logo]: images/logo.png
