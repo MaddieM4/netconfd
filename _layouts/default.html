@@ -8,10 +8,19 @@
             $('img').replaceWith(function(){
                 var src = $(this).attr('src');
                 var alt = $(this).attr('alt');
-                return '<div class="img"><div class="title">'+alt+'</div>'+
-                '<img src="'+src+'" alt="'+alt+'"/></div>';
+                return '<div class="img"><div class="title">'+alt+
+                ' [ <a href="'+link_svg(src)+'">svg</a> | <a href="'+link_png(src)+'">png</a> ]'+
+                '</div><img src="'+src+'" alt="'+alt+'"/></div>';
             });
         });
+
+        function link_svg(href) {
+            return href.replace('.png', '.svg');
+        }
+
+        function link_png(href) {
+            return href.replace('.svg', '.png');
+        }
     </script>
     <title>{{ page.title }}</title>
 </head>
