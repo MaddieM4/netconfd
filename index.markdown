@@ -3,6 +3,12 @@ title: netconfd - Easy, pretty web administration
 layout: default
 ---
 
+## NOTICE: netconfd development is discontinued.
+
+See the [project page](https://github.com/campadrenalin/netconfd) for more information, but basically, it stopped making sense to create netconfd at some point, when my efforts would be much better spent taking all the thing I loved about the netconfd concept, and building them into [Plinth](https://github.com/jvasile/Plinth), the in-construction web interface for FreedomBox configuration. No ideals are being compromised or thrown by the wayside by this move, you're still going to get netconfd goodness, only in a better and more maintained package.
+
+Everything below this is historically preserved like a mosquito in amber, as I originally wrote it to be, so you can see the kind of "netconfd goodness" I've always wanted to bring to the web configuration table.
+
 ## What is netconfd?
 
 netconfd is a modular, flexible daemon for web-based system administration. It
