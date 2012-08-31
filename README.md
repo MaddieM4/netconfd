@@ -3,7 +3,7 @@ netconfd
 
 A flexible and extensible web administration platform for configuring headless servers.
 
-For more information, see the [Github Page](https://campadrenalin.github.com/netconfd)
+For more information, see the [Github Page](http://campadrenalin.github.com/netconfd)
 for this project.
 
 # Sorry folks. netconfd is discontinued.
